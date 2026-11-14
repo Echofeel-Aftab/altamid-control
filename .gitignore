@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.angular/
+storage/
+.env
+*.log
+apps/dashboard/.angular/

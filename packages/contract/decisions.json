@@ -1,0 +1,82 @@
+[
+  {
+    "name": "fresh allow",
+    "now": 1700000000,
+    "transportFailed": false,
+    "fresh": { "v": 1, "usable": true, "verdict": "active", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "stored": null,
+    "access": "allow",
+    "source": "fresh",
+    "reason": "active"
+  },
+  {
+    "name": "fresh revoke wins immediately",
+    "now": 1700000000,
+    "transportFailed": false,
+    "fresh": { "v": 1, "usable": false, "verdict": "revoked", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "stored": { "v": 1, "usable": true, "verdict": "active", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "access": "restrict",
+    "source": "fresh",
+    "reason": "revoked"
+  },
+  {
+    "name": "offline inside the stored window",
+    "now": 1700000000,
+    "transportFailed": true,
+    "fresh": null,
+    "stored": { "v": 1, "usable": true, "verdict": "active", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "access": "allow",
+    "source": "stored",
+    "reason": "offline_until"
+  },
+  {
+    "name": "offline after the stored window",
+    "now": 2000000000,
+    "transportFailed": true,
+    "fresh": null,
+    "stored": { "v": 1, "usable": true, "verdict": "grace", "offline": { "trust": "until", "until": "2024-01-01T00:00:00Z" } },
+    "access": "restrict",
+    "source": "stored",
+    "reason": "offline_elapsed"
+  },
+  {
+    "name": "offline ignores an unusable stored lease",
+    "now": 1700000000,
+    "transportFailed": true,
+    "fresh": null,
+    "stored": { "v": 1, "usable": false, "verdict": "expired", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "access": "restrict",
+    "source": "none",
+    "reason": "unreachable"
+  },
+  {
+    "name": "unreachable with nothing stored",
+    "now": 1700000000,
+    "transportFailed": true,
+    "fresh": null,
+    "stored": null,
+    "access": "restrict",
+    "source": "none",
+    "reason": "unreachable"
+  },
+  {
+    "name": "failed transport ignores an unverified fresh lease",
+    "now": 1700000000,
+    "transportFailed": true,
+    "fresh": { "v": 1, "usable": false, "verdict": "revoked", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "stored": { "v": 1, "usable": true, "verdict": "active", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "access": "allow",
+    "source": "stored",
+    "reason": "offline_until"
+  },
+  {
+    "name": "future contract version fails closed",
+    "now": 1700000000,
+    "transportFailed": false,
+    "fresh": { "v": 2, "usable": true, "verdict": "active", "offline": { "trust": "until", "until": "2030-01-01T00:00:00Z" } },
+    "stored": null,
+    "access": "restrict",
+    "source": "fresh",
+    "reason": "lease_not_understood"
+  }
+]
