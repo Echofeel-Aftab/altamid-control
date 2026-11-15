@@ -132,7 +132,7 @@ export class LabComponent {
   }
 }
 
-function base64UrlToBytes(value: string): Uint8Array<ArrayBuffer> {
+function base64UrlToBytes(value: string): Uint8Array {
   const padded = value.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((value.length + 3) % 4);
   const binary = atob(padded);
   const bytes = new Uint8Array(new ArrayBuffer(binary.length));
