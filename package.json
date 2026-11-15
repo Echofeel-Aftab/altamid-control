@@ -10,6 +10,6 @@
     "test": "npm --prefix apps/api test",
     "postinstall": "npm --prefix apps/api install --include=dev && npm --prefix apps/dashboard install --include=dev",
     "build": "npm --prefix apps/dashboard run build -- --configuration=production",
-    "start": "npm --prefix apps/api start"
+    "start": "node server.js"
   }
 }
